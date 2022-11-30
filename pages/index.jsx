@@ -45,7 +45,7 @@ export function WhatsHappeningView() {
           <form action="#">
             <div className="ml-4 text-2xl">
               <textarea
-                rows={3}
+                rows={1}
                 name="comment"
                 id="comment"
                 className="text-xl focus:outline-none block w-full resize-none p-0 pb-2 focus:ring-0 sm:text-lg"
@@ -68,6 +68,7 @@ export function WhatsHappeningView() {
 
 import { Header } from '../components/Prose'
 import Tweet from '../components/Tweet'
+import Loading from '../components/Loading'
 
 export function ScrollView() {
   return (

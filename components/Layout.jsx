@@ -39,18 +39,10 @@ export default function Layout({ children }) {
     { name: 'Notifications', href: '/notifications', icon: BellIcon, solidIcon: BellIconSolid, current: (router.asPath == "/notifications") },
     { name: 'Messages', href: '/messages', icon: EnvelopeIcon, solidIcon: EnvelopeIconSolid, current: (router.asPath == "/messages") },
     { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, solidIcon: BookmarkIconSolid, current: (router.asPath == "/bookmarks") },
-    { name: 'Profile', href: '/profile', icon: UserIcon, solidIcon: UserIconSolid, current: (router.asPath == "/profile") },
+    { name: 'Profile', href: '/user/hobbleabbas', icon: UserIcon, solidIcon: UserIconSolid, current: (router.asPath == "/user/hobbleabbas") },
   ]
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
@@ -241,8 +233,13 @@ export default function Layout({ children }) {
                     <div className='col-span-2 h-screen border-r border-gray-200 bg-white'>
                         { children }
                     </div>
-                    <div>
-                        Implement
+                    <div className=' pb-4 px-4 sm:px-4 md:px-6 py-6'>
+                        <div className='bg-slate-100 rounded-lg'>
+                          <ul className='py-4 text-md text-slate-600 font-medium'>
+                            <li className='p-4 hover:bg-slate-200'>Breaking News: @hobbleabbas hired at Twitter!</li>
+                            <li className='p-4 hover:bg-slate-200'>Unrelated: World hunger solved!</li>
+                          </ul>
+                        </div>
                     </div>
                 </div>
               </div>
