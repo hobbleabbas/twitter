@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -10,7 +10,6 @@ import {
   EnvelopeIcon,
   BellIcon,
 } from '@heroicons/react/24/outline'
-
 import {
     HomeIcon as HomeIconSolid,
     HashtagIcon as HashtagIconSolid,
@@ -22,6 +21,9 @@ import {
 } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { supabase } from "../internal/supabaseClient"
+import Loading from './Loading'
+import Auth from './RegisterLoginModal'
 
 
 function classNames(...classes) {
@@ -30,6 +32,9 @@ function classNames(...classes) {
 
 export default function Layout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [user, setUser] = useState(null)
+  const [profile, setProfile] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const router = useRouter()
 
@@ -41,6 +46,22 @@ export default function Layout({ children }) {
     { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, solidIcon: BookmarkIconSolid, current: (router.asPath == "/bookmarks") },
     { name: 'Profile', href: '/user/hobbleabbas', icon: UserIcon, solidIcon: UserIconSolid, current: (router.asPath == "/user/hobbleabbas") },
   ]
+
+  async function fetchUser() {
+    const { data: { user } } = await supabase.auth.getUser()
+    
+    if (user) {
+      console.log("TO IMPLEMENT: FETCH PROFILE")
+      return
+    } else {
+      setLoading(false)
+      return
+    }
+  }
+  useEffect(()=>{
+    fetchUser()
+  }, [supabase])
+
   return (
     <>
       <div>
@@ -231,7 +252,19 @@ export default function Layout({ children }) {
               <div className="mx-auto max-w-7xl">
                 <div className='grid grid-cols-3'>
                     <div className='col-span-2 h-screen border-r border-gray-200 bg-white'>
-                        { children }
+                        {
+                          loading ?
+
+                          <Loading />
+
+                          : !loading && user ?
+
+                          { children }
+
+                          :
+
+                          <Auth />
+                        }
                     </div>
                     <div className=' pb-4 px-4 sm:px-4 md:px-6 py-6'>
                         <div className='bg-slate-100 rounded-lg'>
