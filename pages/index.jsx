@@ -4,14 +4,25 @@ import { PrimaryButton } from '../components/Buttons'
 import { supabase } from '../internal/supabaseClient'
 
 const tweets = [
-
+  {
+    user: {
+      "profilePic": "https://pbs.twimg.com/profile_images/1537068883710029826/3-iipbnB_400x400.jpg",
+      "username": "hobbleabbas",
+      "name": "Hobbleabbas"
+    },
+    id: "5000",
+    body: "My name is sheila, sheila ki javani, im too sexy 4 u",
+    likesCount: 5,
+    retweetCount: 2,
+    replyCount: 1
+  }
 ]
 
 export default function Home() {
   return (
     <div>
       <WhatsHappeningView />
-      <ScrollView />
+      <ScrollView tweets={tweets} />
     </div>
   )
 }
@@ -55,50 +66,15 @@ export function WhatsHappeningView() {
   )
 }
 
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { Fragment, useState } from 'react'
-import { FaceSmileIcon as FaceSmileIconOutline, PaperClipIcon } from '@heroicons/react/24/outline'
-import { Listbox, Transition } from '@headlessui/react'
-import {
-  FaceFrownIcon,
-  FaceSmileIcon as FaceSmileIconMini,
-  FireIcon,
-  HandThumbUpIcon,
-  HeartIcon,
-  XMarkIcon,
-} from '@heroicons/react/20/solid'
 import { Header } from '../components/Prose'
-
-const moods = [
-  { name: 'Excited', value: 'excited', icon: FireIcon, iconColor: 'text-white', bgColor: 'bg-red-500' },
-  { name: 'Loved', value: 'loved', icon: HeartIcon, iconColor: 'text-white', bgColor: 'bg-pink-400' },
-  { name: 'Happy', value: 'happy', icon: FaceSmileIconMini, iconColor: 'text-white', bgColor: 'bg-green-400' },
-  { name: 'Sad', value: 'sad', icon: FaceFrownIcon, iconColor: 'text-white', bgColor: 'bg-yellow-400' },
-  { name: 'Thumbsy', value: 'thumbsy', icon: HandThumbUpIcon, iconColor: 'text-white', bgColor: 'bg-blue-500' },
-  { name: 'I feel nothing', value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import Tweet from '../components/Tweet'
 
 export function ScrollView() {
   return (
     <div>
-      Latest Tweets
+      {tweets.map((tweet)=>(
+        <Tweet user={tweet.user} id={tweet.id} body={tweet.body} replyCount={tweet.replyCount} retweetCount={tweet.retweetCount} likesCount={tweet.likesCount} />
+      ))}
     </div>
   )
 }
