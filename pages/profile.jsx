@@ -5,6 +5,7 @@ import { Tab } from '@headlessui/react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Header } from "../components/Prose"
 import { Input } from "../components/Inputs"
+import Tweet from "../components/Tweet"
 
 export default function Profile() {
 
@@ -16,6 +17,7 @@ export default function Profile() {
         bio: "18. Opinions are someone elses. absolutely everything I interact with is an endorsement.",    
         joined: new Date()
     }
+
 
     const [editProfileMode, setEditProfileMode] = useState(false)
 
@@ -33,7 +35,7 @@ export function ProfileBanner({ profile, setEditProfileMode }) {
     return (
         <div>
             <div>
-            <img className="h-32 w-full object-cover lg:h-48" src={profile.coverImageUrl} alt="" />
+                <img className="h-32 w-full object-cover lg:h-48" src={profile.coverImageUrl} alt="" />
             </div>
             <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
@@ -162,10 +164,33 @@ export function ProfileByTab() {
                 </Tab>
             </Tab.List>
             <Tab.Panels>
-                <Tab.Panel>Tweets</Tab.Panel>
+                <Tab.Panel>
+                    <TweetsView />
+                </Tab.Panel>
                 <Tab.Panel>Tweets & Replies</Tab.Panel>
                 <Tab.Panel>Likes</Tab.Panel>
             </Tab.Panels>
         </Tab.Group>
+    )
+}
+
+export function TweetsView() {
+
+    const user = {
+        "profilePic": "https://pbs.twimg.com/profile_images/1537068883710029826/3-iipbnB_400x400.jpg",
+        "username": "hobbleabbas",
+        "name": "Hobbleabbas"
+    }
+
+    const id = "5000"
+    const body = "My name is sheila, sheila ki javani, im too sexy 4 u"
+    const likesCount = 5 
+    const retweetCount = 2
+    const replyCount = 1
+
+    return (
+        <div>
+            <Tweet user={user} id={id} body={body} likesCount={likesCount} retweetCount={retweetCount} replyCount={replyCount} />
+        </div>
     )
 }
