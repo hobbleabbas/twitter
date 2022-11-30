@@ -35,16 +35,15 @@ export default function Auth() {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <div className="space-y-2 relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-7xl sm:p-6">
-                <Header text={"Register for Twitter 2.0"} />
-                <p className='font-medium'>Have an account? <span className='text-sky-500 font-medium hover:text-sky-600'>Log In</span></p>
-                <Input type = "email" label = {"Email"} placeholder="tiger@golf.eu" />
-                <Input type = "text" label = {"Name"} placeholder="Tiger Woods" />
-                <Input type = "text" label = {"Username"} placeholder="@tiger" />
-                <Input type = "password" label={"Password"} />
-                <Input type = "password" label={"Confirm Password"} />
-                <div className='flex mt-4 justify-end'>
-                    <PrimaryButton text="Register" link = "/" />
-                </div>
+                {
+                    registerMode ?
+
+                    <RegisterModal setRegisterMode={setRegisterMode} />
+
+                    :
+
+                    <LoginModal setRegisterMode={setRegisterMode} />
+                }
               </div>
             </div>
           </div>
@@ -52,4 +51,38 @@ export default function Auth() {
       </div>
     </div>
   )
+}
+
+export function RegisterModal() {
+    return (
+        <div className='space-y-4'>
+            <Header text={"Register for Twitter 2.0"} />
+            <p className='font-medium'>Have an account? <span className='text-sky-500 font-medium hover:text-sky-600'>Log In</span></p>
+            <Input type = "email" label = {"Email"} placeholder="tiger@golf.eu" />
+            <Input type = "text" label = {"Name"} placeholder="Tiger Woods" />
+            <Input type = "text" label = {"Username"} placeholder="@tiger" />
+            <Input type = "password" label={"Password"} />
+            <Input type = "password" label={"Confirm Password"} />
+            <div className='flex mt-4 justify-end'>
+                <PrimaryButton text="Register" link = "/" />
+            </div>
+        </div>
+    )
+}
+
+export function LoginModal({ setRegisterMode }) {
+    return (
+        <div>
+            <Header text={"Register for Twitter 2.0"} />
+            <p className='font-medium'>Have an account? <span className='text-sky-500 font-medium hover:text-sky-600'>Log In</span></p>
+            <Input type = "email" label = {"Email"} placeholder="tiger@golf.eu" />
+            <Input type = "text" label = {"Name"} placeholder="Tiger Woods" />
+            <Input type = "text" label = {"Username"} placeholder="@tiger" />
+            <Input type = "password" label={"Password"} />
+            <Input type = "password" label={"Confirm Password"} />
+            <div className='flex mt-4 justify-end'>
+                <PrimaryButton text="Register" link = "/" />
+            </div>
+        </div>
+    )
 }
