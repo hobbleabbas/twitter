@@ -19,7 +19,7 @@ export default function Home() {
 export function WhatsHappeningView() {
 
   return (
-    <div className='border-b pb-4 px-4 sm:px-4 md:px-6'>
+    <div className='border-b pb-4 px-4 sm:px-4 md:px-6 py-6'>
       <Header text = "Home" />
       <div className='mb-4' />
       <div className="flex items-start">

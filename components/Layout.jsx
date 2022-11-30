@@ -235,7 +235,7 @@ export default function Layout({ children }) {
             </button>
           </div>
           <main className="flex-1">
-            <div className="py-6">
+            <div className="">
               <div className="mx-auto max-w-7xl">
                 <div className='grid grid-cols-3'>
                     <div className='col-span-2 h-screen border-r border-gray-200 bg-white'>
