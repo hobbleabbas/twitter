@@ -48,10 +48,11 @@ export default function Layout({ children }) {
   ]
 
   async function fetchUser() {
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data } = await supabase.auth.getUser()
     
-    if (user) {
-      console.log("TO IMPLEMENT: FETCH PROFILE")
+    if (data) {
+      setUser(data.user)
+      setLoading(false)
       return
     } else {
       setLoading(false)

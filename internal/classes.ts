@@ -34,6 +34,7 @@ export class User {
     protectedTweets: boolean;
     _joined: Date
     _followerCount: number;
+    _followingCount: number;
    
     constructor(user_id: string, username: string, name: string, profilePic: string, bannerPic: string, verified: boolean, protectedTweets: boolean, bio?: string) {
         this.user_id = user_id;
